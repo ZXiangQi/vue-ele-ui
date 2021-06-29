@@ -96,11 +96,11 @@
       width="30%"
       @close="editDialogClosed"
     >
-      <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="70px">
+      <el-form :model="editForm" :rules="addFormRules" ref="editFormRef" label-width="80px">
         <el-form-item label="角色名称" prop="roleName">
           <el-input v-model="editForm.roleName"></el-input>
         </el-form-item>
-        <el-form-item label="角色名称" prop="roleDesc">
+        <el-form-item label="角色描述" prop="roleDesc">
           <el-input v-model="editForm.roleDesc"></el-input>
         </el-form-item>
       </el-form>
