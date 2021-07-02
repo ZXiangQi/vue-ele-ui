@@ -1,23 +1,34 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugins/element.js'
+// import './plugins/element.js'
 import axios from 'axios'
 import TreeTable from 'vue-table-with-tree-grid'
 import VueQuillEditor from 'vue-quill-editor'
+import NProgress from 'nprogress'
 
 import './assets/css/global.css'
 
 // 导入富文本编辑器对应的样式
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
+
+// 导入顶部加载进度条的样式
+// import 'nprogress/nprogress.css'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 
 //  添加一个拦截器，为每个请求的请求头添加属性
 axios.interceptors.request.use(config => {
+  // 展示加载进度
+  NProgress.start()
   config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+axios.interceptors.response.use(config => {
+  // 当获得响应后，隐藏进度条
+  NProgress.done()
   return config
 })
 
